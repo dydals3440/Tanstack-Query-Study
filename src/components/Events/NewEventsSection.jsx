@@ -13,6 +13,9 @@ export default function NewEventsSection() {
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ['events'],
     queryFn: fetchEvents,
+    staleTime: 5000,
+    // 기본값은 5분 (30000 => 30초)
+    gcTime: 30000,
   });
 
   let content;
