@@ -12,10 +12,10 @@ export default function NewEvent() {
     <Modal onClose={() => navigate('../')}>
       <EventForm onSubmit={handleSubmit}>
         <>
-          <Link to="../" className="button-text">
+          <Link to='../' className='button-text'>
             Cancel
           </Link>
-          <button type="submit" className="button">
+          <button type='submit' className='button'>
             Create
           </button>
         </>
