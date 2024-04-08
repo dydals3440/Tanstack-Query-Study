@@ -11,11 +11,11 @@ export default function NewEventsSection() {
   // 발생한 오류에 대한 정보가 포함된 것이 error(에러메시지)
   // refetch: 사용자가 버튼을 눌렀을 때 동일한 쿼리를 재호출
   const { data, isPending, isError, error, refetch } = useQuery({
-    queryKey: ['events'],
-    queryFn: fetchEvents,
+    queryKey: ['events', { max: 3 }],
+    queryFn: ({ signal, queryKey }) => fetchEvents({ signal, ...queryKey[1] }),
     staleTime: 5000,
     // 기본값은 5분 (30000 => 30초)
-    gcTime: 30000,
+    // gcTime: 30000,
   });
 
   let content;

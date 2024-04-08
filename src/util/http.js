@@ -3,13 +3,17 @@ import { QueryClient } from '@tanstack/react-query';
 export const queryClient = new QueryClient();
 
 // {searchTerm, signal} 이렇게 destructuring가능
-export async function fetchEvents({ signal, searchTerm }) {
-  console.log(searchTerm);
+export async function fetchEvents({ signal, searchTerm, max }) {
   let url = 'http://localhost:3000/events';
 
-  if (searchTerm) {
+  if (searchTerm && max) {
+    url += '?search=' + searchTerm + '&max=' + max;
+  } else if (searchTerm) {
     url += '?search=' + searchTerm;
+  } else if (max) {
+    url += '?max=' + max;
   }
+
   // 브라우저는 이 취소 신호를 받아 중지함.
   const response = await fetch(url, { signal: signal });
 
