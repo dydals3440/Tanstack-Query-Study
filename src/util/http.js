@@ -1,3 +1,7 @@
+import { QueryClient } from '@tanstack/react-query';
+
+export const queryClient = new QueryClient();
+
 // {searchTerm, signal} 이렇게 destructuring가능
 export async function fetchEvents({ signal, searchTerm }) {
   console.log(searchTerm);
